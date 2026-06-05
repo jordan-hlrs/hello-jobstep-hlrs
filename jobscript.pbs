@@ -5,9 +5,7 @@
 # Note: 2 cores per chip are reserved for OS/system use
 #
 
-#PBS -N myjobname
-#PBS -o logfilename.log
-#PBS -e errorfilename.err
+#PBS -N hello_jobstep
 ### email on begin, abort, and end; or use '-m n' to suppress emails
 #PBS -m bae
 #PBS -M <your email>
@@ -25,9 +23,8 @@ export OMP_NUM_THREADS=22
 export OMP_PROC_BIND=close
 export MPICH_OFI_NIC_POLICY=NUMA
 
-module load rocm
-module load cray-mpich/9.0.1
-export LD_LIBRARY_PATH=/opt/cray/pe/mpich/9.0.1/gtl/lib:$LD_LIBRARY_PATH
+### not necessary here since it's the default
+module load HLRS/APU
 
 ### program launch command
 ### Important: pin the CPUs and the GPU of the same MI300A chip together
